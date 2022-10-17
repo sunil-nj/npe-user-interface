@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Payment from '../payment/Payment';
 import LoadingMask from "react-loadingmask";
-
+import UserDetails from '../userProfile/UserDetails';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import './login.css'
+import './Login.css'
 
 function Login() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [cutsomerId, setCustomerId] = useState('');
   const navigate = useNavigate();
 
   const navigateHome =() =>{
@@ -19,7 +20,7 @@ function Login() {
   // User Login info
   const database = [
     {
-      username: "user1",
+      username: "testCustomer123",
       password: "pass1"
     },
     {
@@ -39,6 +40,8 @@ function Login() {
 
     var { uname, pass } = document.forms[0];
 
+    setCustomerId(uname);
+
     // Find user login info
     const userData = database.find((user) => user.username === uname.value);
 
@@ -49,11 +52,13 @@ function Login() {
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
+        //navigate('/useprofile');
       }
     } else {
       // Username not found
       setErrorMessages({ name: "uname", message: errors.uname });
     }
+
   };
 
   // Generate JSX code for error message
@@ -70,7 +75,7 @@ function Login() {
       <br />
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>Username </label>
+          <label>customerId </label>
           <input type="text" name="uname" required />
           {renderErrorMessage("uname")}
         </div>
@@ -106,6 +111,7 @@ function Login() {
         <div>
           <LoadingMask loading={isLoading} text={"loading..."}>
             <Payment setIsLoading={setIsLoading} />
+            {/* <UserDetails name={cutsomerId && cutsomerId.value} /> */}
           </LoadingMask>
           
         </div> : <div className="app">{renderForm} </div>

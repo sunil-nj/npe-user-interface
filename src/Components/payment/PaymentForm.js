@@ -1,24 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   TextField,
   Button,
-  MenuItem,
   Divider,
   Slide,
   LinearProgress,
   Box,
-  Typography,
-  InputLabel,
-  NativeSelect
+  Typography
 } from "@mui/material";
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-
-//import { ProgressBar } from "react-bootstrap";
-//import { validator } from "./Validator";
 import useForm from "./useForm";
 import "../../App.css";
-//import * as constants from "../../constants/constants";
 import {
   callPaymentAPI,
 } from "../../services/PaymentAPI";
@@ -30,7 +22,7 @@ import {
   DialogActions,
 } from "@mui/material";
 import _ from "lodash";
-import '../Login/login.css';
+import "../login/Login.css";
 
 function TransitionUp(props) {
   return <Slide {...props} direction="up" />;
@@ -70,7 +62,6 @@ export default function PaymentForm({ onClose, setSnackBarOpen, setIsLoading }) 
   const [accType, setAccType] = React.useState('');
 
   const submit = (data) => {
-    //This patientId has to be changed to props and check how to value from My Patient 360 App
     setIsLoading(true);
    
     const payload = {
@@ -89,24 +80,6 @@ export default function PaymentForm({ onClose, setSnackBarOpen, setIsLoading }) 
         setSnackBarOpen(true);
       }
     });
-    // callUploadApi(payload, patientId).then((data) => {
-    //   if (data && data.uuid) {
-    //     setUuid(data.uuid);
-    //     setIsLoading(false);
-    //     if (isPDF && !isFileSizeThreshold) {
-    //       setSnackBarOpen(true);
-    //     }
-    //   }
-    //   if (payload.data === "") {
-    //     callUploadAFileApi(state.file, data.uuid).then((data) => {
-    //     setIsLoading(false);
-    //       if (data) {
-    //         setFileUploadMessage(data.message);
-    //         setSnackBarOpen(true);
-    //       }
-    //     });
-    //   }
-    // });
     onClose();
   };
 
@@ -120,10 +93,6 @@ export default function PaymentForm({ onClose, setSnackBarOpen, setIsLoading }) 
     initState,
     callback: submit,
   });
-
-  const handleChange2 = (event: SelectChangeEvent) => {
-    setAccType(event.target.value);
-  };
 
   let isValidForm =
     Object.values(errors).filter((error) => typeof error !== "undefined")
@@ -177,23 +146,6 @@ export default function PaymentForm({ onClose, setSnackBarOpen, setIsLoading }) 
           className="input-field-margin"
           value={state.senderAccountTpe}
         />
-        {/* <InputLabel id="account-type">Account Type</InputLabel>
-  <Select
-    labelId="account-type"
-    label="Account Type"
-    value={accType}
-    name="senderAccountId"
-    defaultValue={state.senderAccountTpe}
-    onChange={handleChange2}
-  >
-    <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
-    <MenuItem value={1}>Savings</MenuItem>
-    <MenuItem value={2}>Current</MenuItem>
-  </Select>
-  */}
-
         <br />
 
         {/* recepient phoneNumber */}

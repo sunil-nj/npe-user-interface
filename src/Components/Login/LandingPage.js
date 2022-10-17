@@ -1,7 +1,7 @@
 import React from "react";
-import './login.css'
+import './Login.css'
 import Button from '@mui/material/Button';
-import Login from "./login";
+import Login from "./Login";
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 

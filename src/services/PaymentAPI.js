@@ -3,7 +3,7 @@
 export function callPaymentAPI(payload) {
 
     return fetch(
-        `http://localhost:8080/payment`,
+        `http://npeprocessnew-env.eba-3mdivn3b.us-east-1.elasticbeanstalk.com/payment`,
         {
             method: "POST",
             headers: {

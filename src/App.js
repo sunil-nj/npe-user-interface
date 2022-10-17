@@ -1,13 +1,9 @@
-import Login from './Components/Login/login'
-import HomePage from './Components/Login/home'
-import LandingPage from './Components/Login/LandingPage'
-import MainNavigation from './Components/MainNavigation';
+import React from 'react';
+import MainNavigation from "./components/MainNavigation";
 function App() {
   return (
     <div>
       <MainNavigation/>
-      {/* <LandingPage /> */}
-      {/* <Login/> */}
     </div>
   );
 }
